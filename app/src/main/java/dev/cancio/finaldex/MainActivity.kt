@@ -3,41 +3,24 @@ package dev.cancio.finaldex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import dev.cancio.finaldex.ui.screen.HomeScreen
 import dev.cancio.finaldex.ui.theme.FinaldexTheme
+import dev.cancio.finaldex.viewmodel.DetailViewModel
+import dev.cancio.finaldex.viewmodel.GameViewModel
+import dev.cancio.finaldex.viewmodel.HomeViewModel
+import dev.cancio.finaldex.viewmodel.LikeViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val homeViewModel = HomeViewModel()
+        val detailViewModel = DetailViewModel()
+        val gameViewModel = GameViewModel()
+        val likeViewModel = LikeViewModel()
         setContent {
             FinaldexTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                HomeScreen(viewModel = homeViewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    FinaldexTheme {
-        Greeting("Android")
     }
 }
